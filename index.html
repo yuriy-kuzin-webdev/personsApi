@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>SPA</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
+</head>
+
+<body>
+  <div class="container">
+    <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-primary">
+      <a class="navbar-brand" href="/">Navbar</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a id="home" class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a id="add-new" class="nav-link" href="#">Add New</a>
+          </li>
+          <li class="nav-item">
+            <a id="search"class="nav-link" href="#">Search</a>
+          </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+          <input class="form-control mr-sm-2" type="search" placeholder="Keywords" aria-label="Search">
+          <button id="nav-search-btn" class="btn btn-primary border border-white my-2 my-sm-0" type="submit">Search</button>
+        </form>
+      </div>
+    </nav>
+  </div>
+  <main class="container">
+    <div class="jumbotron bg-white mt-1">
+      <h2 id="jumbo-text">Persons list</h2>
+      <p class="text-secondary" id="jumbo-help"></pclass="text-secondary">
+    </div>
+    <div id="content" class="row">
+    </div>
+    <div id="detailed-view" data-id="" class="row" style="display: none;">
+      <div class="col-md-12">
+        <form id="form">  
+          <div class="form-group">
+            <label for="FName">First Name</label>
+            <input type="text" class="form-control" id="FName" placeholder="" required>
+          </div>
+          <div class="form-group">
+            <label for="LName">Last Name</label>
+            <input type="text" class="form-control" id="LName" placeholder="" required>
+          </div>
+          <div class="form-group">
+            <label for="MName">Middle Name</label>
+            <input type="text" class="form-control" id="MName" placeholder="">
+          </div>
+          <div class="form-group"> <!-- Date input -->
+            <label class="control-label" for="date">Birth Date</label>
+            <input class="form-control" id="date" name="date" placeholder="MM/DD/YYY" type="text"/>
+          </div>
+          <div class="form-group">
+            <label class="control-label" for="sex">Sex</label>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="sex" id="male" value="male" >
+              <label class="form-check-label" for="male">
+                male
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="sex" id="female" value="female">
+              <label class="form-check-label" for="female">
+                female
+              </label>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="EMail">Email address</label>
+            <input type="email" class="form-control" id="EMail" placeholder="">
+          </div>
+          <button id="undo" class="btn btn-primary">Undo</button>
+          <button id="save" class="btn btn-warning">Submit</button>
+          <button id="delete" class="btn btn-danger" style="display: none;">Delete</button>
+        </form>
+      </div>
+    </div>
+    <div class="detailed-view-result">
+    </div>
+  </main>
+  <div id="confirmation" class="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Confirm action</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p id="modal-text"">Modal body text goes here.</p>
+        </div>
+        <div class="modal-footer">
+          <button id="modal-ok" type="button" class="btn btn-primary" data-dismiss="modal">Ok</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+    integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+    crossorigin="anonymous"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+  <script src="app/assets/js/dateformat.js"></script>
+  <script src="app/assets/js/read.js"></script>
+  <script src="app/assets/js/delete.js"></script>
+  <script src="app/assets/js/update.js"></script>
+  <script src="app/assets/js/create.js"></script>
+  <script src="app/assets/js/search.js"></script>
+  <script src="app/assets/js/main.js"></script>
+  <script>
+    $(document).ready(function(){
+        var date_input=$('input[name="date"]'); //our date input has the name "date"
+        var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
+        date_input.datepicker({
+            format: 'mm/dd/yyyy',
+            container: container,
+            todayHighlight: true,
+            autoclose: true,
+        })
+    })
+  </script>
+</body>
+
+</html>
